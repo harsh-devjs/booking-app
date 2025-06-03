@@ -4,3 +4,12 @@
 body {
     font-family: Poppins;
 }
+
+/* custom classes */
+.text-primary {
+    @apply text-[#003580];
+}
+
+.bg-primary {
+    @apply bg-[#003580];
+}

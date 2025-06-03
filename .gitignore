@@ -1,0 +1,22 @@
+# node modules for backend and frontend
+client/node_modules/
+api/node_modules/
+
+# build output
+client/build/
+client/dist/
+api/build/
+api/dist/
+
+# logs
+*.logs
+npm-debug.log*
+
+# environment variables
+client/.env
+api/.env
+.env
+
+# ide files
+.vscode/
+.idea/

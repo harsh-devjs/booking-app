@@ -13,3 +13,11 @@ body {
 .bg-primary {
     @apply bg-[#003580];
 }
+
+.text-secondary {
+    @apply text-[#0071C2];
+}
+
+.bg-secondary {
+    @apply bg-[#0071C2];
+}

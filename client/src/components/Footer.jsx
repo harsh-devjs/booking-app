@@ -15,6 +15,46 @@ const Footer = () => {
                     <li className="mb-2.5 text-primary cursor-pointer">Airports</li>
                     <li className="mb-2.5 text-primary cursor-pointer">Hotels</li>
                 </ul>            
+                {/* single list */}
+                <ul className="">
+                    {/* list item */}
+                    <li className="mb-2.5 text-primary cursor-pointer">Countries</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Regions</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Cities</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Districts</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Airports</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Hotels</li>
+                </ul>            
+                {/* single list */}
+                <ul className="">
+                    {/* list item */}
+                    <li className="mb-2.5 text-primary cursor-pointer">Countries</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Regions</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Cities</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Districts</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Airports</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Hotels</li>
+                </ul>            
+                {/* single list */}
+                <ul className="">
+                    {/* list item */}
+                    <li className="mb-2.5 text-primary cursor-pointer">Countries</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Regions</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Cities</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Districts</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Airports</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Hotels</li>
+                </ul>            
+                {/* single list */}
+                <ul className="">
+                    {/* list item */}
+                    <li className="mb-2.5 text-primary cursor-pointer">Countries</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Regions</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Cities</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Districts</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Airports</li>
+                    <li className="mb-2.5 text-primary cursor-pointer">Hotels</li>
+                </ul>            
             </div>
             <div className="">Copyright &copy; 2025</div>
         </footer>

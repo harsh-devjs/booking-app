@@ -7,8 +7,10 @@ import { useState } from "react";
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import { format } from 'date-fns'
+import { useNavigate } from 'react-router-dom'
 
 const Header = ({ type }) => {
+    const [destination, setDestination] = useState("")
     const [openDate, setOpenDate] = useState(false)
     const [options, setOptions] = useState({
         adult: 1,
@@ -24,6 +26,8 @@ const Header = ({ type }) => {
         }
     ]);
 
+    const navigate = useNavigate()
+
     const handleOption = (name, operation) => {
         setOptions(prev => {
             return {
@@ -31,6 +35,11 @@ const Header = ({ type }) => {
             }
         })
     }
+
+    const handleSearch = () => {
+        navigate('/hotels', { state: { destination, date, options } })
+    }
+
     return (
         <header className='bg-primary text-white flex justify-center relative'>
             {/* header container */}
@@ -73,19 +82,22 @@ const Header = ({ type }) => {
                                 type="text"
                                 placeholder="Where are you going?"
                                 className="outline-none text-gray-500"
+                                onChange={e => setDestination(e.target.value)}
                             />
                         </div>
 
                         {/* search item */}
                         <div className="flex gap-3 cursor-pointer">
                             <FaCalendarDay className="text-gray-400" size={20} />
-                            <span onClick={() => setOpenDate(prev => !prev)} className="text-gray-500">{`${format(date[0].startDate, 'dd/MM/yyyy')} to ${format(date[0].endDate, 'dd/MM/yyyy')}`}</span>
+                            <span onClick={() => setOpenDate(prev => !prev)} className="text-gray-500">{`${format(date[0].startDate, 'dd/MM/yyyy')} to ${format(date[0].endDate, 'dd/MM/yyyy')}`}
+                            </span>
                             {openDate && <DateRange
                                 className="absolute top-12.5 z-20"
                                 editableDateInputs={true}
                                 onChange={item => setDate([item.selection])}
                                 moveRangeOnFirstSelection={false}
                                 ranges={date}
+                                minDate={new Date()}
                             />}
                         </div>
                         {/*  search item */}
@@ -125,7 +137,7 @@ const Header = ({ type }) => {
                         </div>
                         {/*  search item */}
                         <div className="flex gap-3">
-                            <button className="bg-[#0071C2] p-2.5 cursor-pointer rounded text-white">Search</button>
+                            <button className="bg-[#0071C2] p-2.5 cursor-pointer rounded text-white" onClick={handleSearch}>Search</button>
                         </div>
                     </div>
                 </>}

@@ -4,7 +4,7 @@ const Footer = () => {
     return (
         <footer className='w-full max-w-5xl text-xs flex flex-col items-center'>
             {/* all lists */}
-            <div className="flex justify-between mb-12.5 ">
+            <div className="w-full flex justify-between mb-12.5 ">
                 {/* single list */}
                 <ul className="">
                     {/* list item */}

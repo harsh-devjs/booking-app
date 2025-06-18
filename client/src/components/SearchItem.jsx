@@ -5,7 +5,7 @@ const SearchItem = () => {
         <div className='border border-gray-300 flex gap-5 mb-5 p-2.5 rounded-[5px] justify-between'>
             <img src="https://cf.bstatic.com/xdata/images/hotel/square200/493232041.webp?k=a54fba1915af277676b860aa71f8b2b68e796feee31766499b1ef615c1cee424&o=" alt="" className="w-52 h-52 object-cover" />
             {/* description */}
-            <div className="flex-2 flex flex-col gap-2.5 flex-2">
+            <div className="flex-2 flex flex-col gap-2.5">
                 <h1 className="text-xl font-bold text-secondary">Tower Street Apartment</h1>
                 <span className='text-xs'>500m from center</span>
                 <span className='text-xs text-white bg-green-600 p-1 w-max'>Free airport taxi</span>

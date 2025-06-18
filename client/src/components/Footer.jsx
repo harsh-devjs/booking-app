@@ -56,7 +56,7 @@ const Footer = () => {
                     <li className="mb-2.5 text-primary cursor-pointer">Hotels</li>
                 </ul>            
             </div>
-            <div className="">Copyright &copy; 2025</div>
+            <div className="mb-5">Copyright &copy; 2025</div>
         </footer>
     )
 }

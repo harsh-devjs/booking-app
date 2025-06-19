@@ -1,10 +1,16 @@
+'use client'
 import Navbar from '../components/Navbar'
 import Header from '../components/Header'
 import MailList from '../components/MailList'
 import Footer from '../components/Footer'
 import { FaLightbulb } from 'react-icons/fa'
+import { useState } from 'react'
+import { FaCircleArrowLeft, FaCircleArrowRight, FaCircleXmark } from 'react-icons/fa6'
 
 const Hotel = () => {
+  const [slideIndex, setSlideIndex] = useState(0)
+  const [open, setOpen] = useState(false)
+
   const photos = [
     {
       src: 'https://cf.bstatic.com/xdata/images/hotel/max500/543080034.jpg?k=220ebae747b396b126ad45d88f95558e185450540a60926d86067d26613a85d6&o='
@@ -22,13 +28,43 @@ const Hotel = () => {
       src: 'https://cf.bstatic.com/xdata/images/hotel/max300/47657393.jpg?k=f8554eb986666757cc8666151fe0f6c3a4818d7c543eee16aad92889901a575d&o='
     }
   ]
+
+  const handleOpen = (i) => {
+    setSlideIndex(i)
+    setOpen(true)
+  }
+
+  const handleMove = (direction) => {
+    let newSlideIndex;
+
+    if (direction === 'l') {
+      newSlideIndex = slideIndex === 0 ? 4 : slideIndex - 1
+    } else {
+      newSlideIndex = slideIndex === 4 ? 0 : slideIndex + 1
+    }
+    setSlideIndex(newSlideIndex)
+  }
+
   return (
     <div className=''>
       <Navbar />
       <Header type='list' />
 
       {/* hotel container */}
-      <div className="flex flex-col items-center mt-5 gap-7.5">
+      <div className="flex flex-col items-center pt-5 gap-7.5">
+
+        {/* slider */}
+        {open && (
+          <div className="sticky -top-5 left-0 w-screen h-screen bg-gray-700 z-10 flex items-center">
+            <FaCircleXmark color='lightgray' size={30} className='absolute top-10 right-20 cursor-pointer' onClick={() => setOpen(false)} />
+            <FaCircleArrowLeft color='lightgray' size={50} className='absolute left-20 cursor-pointer' onClick={() => handleMove('l')} />
+            {/* slider wrapper */}
+            <div className="w-full h-full flex justify-center items-center">
+              <img className='w-[80%] h-[80%]' src={photos[slideIndex].src} alt="" />
+            </div>
+            <FaCircleArrowRight color='lightgray' size={50} className='absolute right-20 cursor-pointer' onClick={() => handleMove('r')} />
+          </div>
+        )}
 
         {/* hotel wrapper */}
         <div className="w-full max-w-5xl flex flex-col gap-2.5 relative">
@@ -45,9 +81,9 @@ const Hotel = () => {
           <span className="text-green-600 font-medium">Book a stay over $114 at this property and get a free airport taxi.</span>
           {/* hotel images */}
           <div className="flex flex-wrap gap-.5">
-            {photos.map(photo => (
+            {photos.map((photo, i) => (
               <div key={photo.src} className="w-1/3">
-                <img className='w-full object-cover' src={photo.src} alt='' />
+                <img onClick={() => handleOpen(i)} className='w-full object-cover' src={photo.src} alt='' />
               </div>
             ))}
           </div>

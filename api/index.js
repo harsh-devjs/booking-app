@@ -4,7 +4,7 @@ import mongoose from 'mongoose'
 import authRoute from './routes/auth.js'
 import userRoute from './routes/users.js'
 import hotelRoute from './routes/hotels.js'
-import roomRoute from './routes/hotels.js'
+import roomRoute from './routes/rooms.js'
 import cookieParser from 'cookie-parser'
 
 const app = express()
@@ -30,7 +30,7 @@ app.use(express.json())
 app.use('/api/auth', authRoute)
 app.use('/api/user', userRoute)
 app.use('/api/hotels', hotelRoute)
-app.use('/api/hotels/:id', roomRoute)
+app.use('/api/rooms', roomRoute)
 
 app.use((err, req, res, next) => {
     const errStatus = err.status || 500

@@ -2,9 +2,10 @@ import React from 'react'
 import useFetch from '../hooks/useFetch'
 
 const Featured = () => {
+
   const baseUrl = import.meta.env.VITE_API_BASE_URL
   const { data, error, loading } = useFetch(`${baseUrl}/hotels/countbycities?cities=Berlin,Agra,Kaithal`)
-  console.log(data)
+
   return (
     <section className='w-full max-w-5xl flex justify-between gap-5 z-1'>
       {loading ? 'Loading please wait...' :

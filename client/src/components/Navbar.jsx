@@ -1,11 +1,14 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 
 const Navbar = () => {
   return (
     <nav className='h-12.5 bg-primary flex justify-center'>
       {/* nav container */}
       <div className="w-full max-w-5xl text-white flex items-center justify-between">
-        <span className='font-medium'>Booking.com</span>
+        <Link to='/'>
+          <span className='font-medium'>Booking.com</span>
+        </Link>
 
         {/* nav items */}
         <div className="">

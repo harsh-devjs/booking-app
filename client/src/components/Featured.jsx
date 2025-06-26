@@ -4,7 +4,8 @@ import useFetch from '../hooks/useFetch'
 const Featured = () => {
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL
-  const { data, error, loading } = useFetch(`${baseUrl}/hotels/countbycities?cities=Berlin,Agra,Kaithal`)
+
+  const { data, error, loading } = useFetch(`${baseUrl}/hotels/countbycities?cities=berlin,hisar`)
 
   return (
     <section className='w-full max-w-5xl flex justify-between gap-5 z-1'>
@@ -24,7 +25,7 @@ const Featured = () => {
             <img src="https://cf.bstatic.com/xdata/images/city/600x600/684534.jpg?k=d1fe86c22f2433f4e2dda14ddcbe80feb024b0fb30305e5684a1241fba5d4cff&o=" alt="" className="w-full object-cover brightness-75" />
             {/* featured title */}
             <div className="absolute text-white bottom-5 left-5">
-              <h1 className="text-2xl font-bold">Agra</h1>
+              <h1 className="text-2xl font-bold">Hisar</h1>
               <h2 className="text-lg">{data[1]} properties</h2>
             </div>
           </div>

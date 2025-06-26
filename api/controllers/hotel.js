@@ -72,3 +72,25 @@ export const countByCity = async (req, res, next) => {
         next(err)
     }
 }
+
+// GET HOTEL BY CITY
+export const countByType = async (req, res, next) => {
+
+    try {
+        const hotelCount = await Hotel.countDocuments({ type: "Hotel" })
+        const apartmentCount = await Hotel.countDocuments({ type: "apartment" })
+        const resortCount = await Hotel.countDocuments({ type: "resort" })
+        const villaCount = await Hotel.countDocuments({ type: "villa" })
+        const cabinCount = await Hotel.countDocuments({ type: "cabin" })
+
+        res.status(200).json([
+            { type: "Hotel", count: hotelCount },
+            { type: "apartment", count: apartmentCount },
+            { type: "resort", count: resortCount },
+            { type: "villa", count: villaCount },
+            { type: "cabin", count: cabinCount }
+        ])
+    } catch (err) {
+        next(err)
+    }
+}

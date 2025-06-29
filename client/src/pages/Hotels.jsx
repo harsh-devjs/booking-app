@@ -8,14 +8,21 @@ import { DateRange } from 'react-date-range'
 import 'react-date-range/dist/styles.css'; // main css file
 import 'react-date-range/dist/theme/default.css'; // theme css file
 import SearchItem from '../components/SearchItem'
+import useFetch from '../hooks/useFetch'
 
 const Hotels = () => {
+
   const location = useLocation()
   const [destination, setDestination] = useState(location.state.destination)
   const [date, setDate] = useState(location.state.date)
   const [openDate, setOpenDate] = useState(false)
   const [options, setOptions] = useState(location.state.options)
-  const [openOptions, setOpenOptions] = useState(false)
+  const [min, setMin] = useState(undefined)
+  const [max, setMax] = useState(undefined)
+
+  const baseUrl = import.meta.env.VITE_API_BASE_URL
+  const { data, loading, error, reFetch } = useFetch(`${baseUrl}/hotels?city=${destination}&min=${min || 0}&max=${max || 999999}`)
+  console.log(data)
 
   const handleOption = (name, operation) => {
     setOptions(prev => {
@@ -23,6 +30,10 @@ const Hotels = () => {
         ...prev, [name]: operation === 'i' ? options[name] + 1 : options[name] - 1
       }
     })
+  }
+
+  const handleClick = () => {
+    reFetch( )
   }
 
   return (
@@ -67,12 +78,12 @@ const Hotels = () => {
                 {/* option 1 */}
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Min Price <small>per night</small></span>
-                  <input type="number" name="" id="" className='p-2.5 outline-none bg-white w-24' />
+                  <input type="number" onChange={e => setMin(e.target.value)} name="" id="" className='p-2.5 outline-none bg-white w-24' />
                 </div>
                 {/* option 2 */}
                 <div className="flex justify-between items-center">
                   <span className="text-sm">Max Price <small>per night</small></span>
-                  <input type="number" name="" id="" className='p-2.5 outline-none bg-white w-24' />
+                  <input type="number" onChange={e => setMax(e.target.value)} name="" id="" className='p-2.5 outline-none bg-white w-24' />
                 </div>
                 {/* option 3 */}
                 <div className="flex justify-between items-center">
@@ -90,20 +101,19 @@ const Hotels = () => {
                   <input type="number" min={1} placeholder={options.room} className='p-2.5 outline-none bg-white w-24' />
                 </div>
               </div>
-              <button className="p-2.5 bg-secondary text-white rounded font-medium">Search</button>
+              <button
+                onClick={handleClick}
+                className="p-2.5 bg-secondary text-white rounded font-medium">Search</button>
             </div>
           </div>
 
           {/* search results */}
           <div className="flex-3">
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
-            <SearchItem />
+            {loading ? 'Loading please wait...' : <>
+              {data?.map(item => (
+                <SearchItem key={item._id} item={item} />
+              ))}
+            </>}
           </div>
         </div>
       </div>

@@ -22,7 +22,6 @@ const Hotels = () => {
 
   const baseUrl = import.meta.env.VITE_API_BASE_URL
   const { data, loading, error, reFetch } = useFetch(`${baseUrl}/hotels?city=${destination}&min=${min || 0}&max=${max || 999999}`)
-  console.log(data)
 
   const handleOption = (name, operation) => {
     setOptions(prev => {

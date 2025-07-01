@@ -4,10 +4,11 @@ import Header from '../components/Header'
 import MailList from '../components/MailList'
 import Footer from '../components/Footer'
 import { FaLightbulb } from 'react-icons/fa'
-import { useState } from 'react'
+import { useContext, useState } from 'react'
 import { FaCircleArrowLeft, FaCircleArrowRight, FaCircleXmark } from 'react-icons/fa6'
 import useFetch from '../hooks/useFetch'
 import { useLocation } from 'react-router-dom'
+import { SearchContext } from '../context/SearchContext'
 
 const Hotel = () => {
   const location = useLocation()
@@ -16,6 +17,17 @@ const Hotel = () => {
   const [open, setOpen] = useState(false)
   const baseUrl = import.meta.env.VITE_API_BASE_URL
   const { data, loading, error } = useFetch(`${baseUrl}/hotels/${id}`)
+
+  const { dates, options } = useContext(SearchContext)
+
+  const MILLISECONDS_PER_DAY = 1000 * 60 * 60 * 24
+  function dayDifference(date1, date2) {
+    const timeDiff = Math.abs(date2.getTime() - date1.getTime())
+    const diffDays = Math.ceil(timeDiff / MILLISECONDS_PER_DAY)
+    return diffDays;
+  }
+
+  const days = dayDifference(dates[0].startDate, dates[0].endDate)
 
   const handleOpen = (i) => {
     setSlideIndex(i)
@@ -84,10 +96,10 @@ const Hotel = () => {
             </div>
             {/* hotel detail price */}
             <div className="bg-secondary rounded-xl flex-1 text-white flex flex-col gap-5 p-5">
-              <h1 className="text-xl font-semibold">Perfect for 9 night stay!</h1>
+              <h1 className="text-xl font-semibold">Perfect for {days}-night stay!</h1>
               <span className="text-sm text-gray-200">Located in the real heart of Krakow, this property has an excellent location score of 9.5!</span>
               <h2 className="">
-                <b>$945</b> (9 nights)
+                <b>₹{days * data.cheapestPrice * options.room}</b> ({days} nights)
               </h2>
               <button className="bg-white text-secondary p-2.5 rounded font-medium">Reserve or Book Now!</button>
             </div>

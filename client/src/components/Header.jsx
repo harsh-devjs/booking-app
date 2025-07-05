@@ -10,6 +10,7 @@ import { format } from 'date-fns'
 import { useNavigate } from 'react-router-dom'
 import { useContext } from "react";
 import { SearchContext } from "../context/SearchContext";
+import { AuthContext } from "../context/AuthContext";
 
 const Header = ({ type }) => {
     const [destination, setDestination] = useState("")
@@ -27,6 +28,8 @@ const Header = ({ type }) => {
             key: 'selection'
         }
     ]);
+
+      const {user} = useContext(AuthContext)
 
     const navigate = useNavigate()
 
@@ -76,7 +79,7 @@ const Header = ({ type }) => {
                 {type !== 'list' && <>
                     <h1 className="text-5xl font-black ">Find your next stay</h1>
                     <p className="my-5 text-xl">Search deals on hotels, homes, and much more...</p>
-                    <button className="bg-[#0071C2] p-2.5 cursor-pointer rounded">Sign in / Register</button>
+                    {!user && <button className="bg-[#0071C2] p-2.5 cursor-pointer rounded">Sign in / Register</button>}
 
                     {/* header search */}
                     <div className="w-full max-w-5xl p-2 bg-white border-3 border-[#febb02] flex items-center justify-around text-black rounded absolute -bottom-8">

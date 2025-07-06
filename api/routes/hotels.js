@@ -25,8 +25,8 @@ router.get('/:id', getHotel)
 // GET ALL
 router.get('/', getAllHotels)
 
-// GET HOTEL ROOMS
-router.get('/rooms/:id', getHotelRooms)
+// GET ALL HOTEL ROOMS BY HOTEL ID
+router.get('/room/:id', getHotelRooms)
 
 
 export default router
